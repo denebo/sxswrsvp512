@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2, 
+  "name": "SXSW RSVP Do512",
+  "description": "Created by Deneb Garza", 
+  "version": "0.1", 
+  "content_scripts": [
+   {
+     "matches": ["http://sx2014.do512.com/*"], 
+     "js": ["script.js"]
+   }
+  ], 
+  "icons": { "16": "icon-16.png" }, 
+  "permissions": [
+    "http://sx2014.do512.com/*"
+  ]
+}
