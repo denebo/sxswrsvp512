@@ -1,28 +1,37 @@
-var div_classname = "ds-listing ds-listing-event ds-listing-expandable ds-listing-view-slim";
+document.getElementsByTagName("header")[0].onclick = function() {
+  cont = confirm("Start RSVP?");
 
-var div_events_n = document.getElementsByClassName(div_classname); // NodeList
-var div_events = [];
+  if(cont) {
+    var first_name = prompt("First name");
+    var last_name = prompt("Last name");
+    var email = prompt("E-mail");
 
-for(var i = 0; i < div_events_n.length; i++) {
-  evt = { "name": "" };
-  div_events[i] = div_events_n[i];
+    var div_classname = "ds-listing ds-listing-event ds-listing-expandable ds-listing-view-slim";
 
-  evt["name"] = div_events[i].getAttribute('data-permalink');
-  evt["id"] = div_events[i].getAttribute('data-id');
+    var div_events_n = document.getElementsByClassName(div_classname); // NodeList
+    var div_events = [];
 
-  console.log("RSVPing to " + evt["name"]);
+    for(var i = 0; i < div_events_n.length; i++) {
+      evt = { "name": "" };
+      div_events[i] = div_events_n[i];
 
-  xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if(xhr.status == 200) {
-      parser = new DOMParser();
-      doc = parser.parseFromString(xhr.responseText, "text/xml");
+      evt["name"] = div_events[i].getAttribute('data-permalink');
+      evt["id"] = div_events[i].getAttribute('data-id');
+
+      console.log("RSVPing to " + evt["name"]);
+
+      xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if(xhr.status == 200) {
+        //  parser = new DOMParser();
+        //  doc = parser.parseFromString(xhr.responseText, "text/xml");
+        }
+      }
+      xhr.open("POST", "http://sx2014.do512.com/events/" + evt["id"] + "/rsvp", true);
+      xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xhr.send("user[first_name]=" + first_name + "&user[last_name]=" + last_name + "&user[email]=" + email + "&rsvp[plus1]=1&spam_answer=10&rsvp[opt_in]=0&user[over_21]=1");
     }
   }
-  xhr.open("POST", window.location + "events/" + evt["id"] + "/rsvp", true);
-  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xhr.send("user[first_name]=Deneb&user[last_name]=Garza&user[email]=denebgarza@gmail.com&rsvp[plus1]=1&spam_answer=10&rsvp[opt_in]=0&user[over_21]=1");
 }
-
 
 
