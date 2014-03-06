@@ -1,3 +1,4 @@
+alert('RSVP Extension enabled');
 document.getElementsByTagName("header")[0].onclick = function() {
   cont = confirm("Start RSVP?");
 
@@ -27,7 +28,7 @@ document.getElementsByTagName("header")[0].onclick = function() {
         //  doc = parser.parseFromString(xhr.responseText, "text/xml");
         }
       }
-      xhr.open("POST", "http://sx2014.do512.com/events/" + evt["id"] + "/rsvp", true);
+      xhr.open("POST", "http://2014.do512.com/events/" + evt["id"] + "/rsvp", true);
       xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
       xhr.send("user[first_name]=" + first_name + "&user[last_name]=" + last_name + "&user[email]=" + email + "&rsvp[plus1]=1&spam_answer=10&rsvp[opt_in]=0&user[over_21]=1");
     }
